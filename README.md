@@ -1,12 +1,16 @@
 # Projet VisualDon
 Andy Kanga & Aleksandar Srbinovski
 ## Contexte
-d'où viennent les données, qui les a créées et dans quel contexte
+Dans le domaine du jeu vidéo, nous avons trois constructeurs majeurs de consoles : Microsoft, Sony et Nintendo. Ces grosses entreprises se livrent une véritable compétition pour conquérir le plus de part de marché et les coeurs des joueurs. Leurs stratégies varient selon chaque génération de consoles et chacun essaie d'adapter leurs offres selon les tendances du marché actuelle.
 ## Description
 Comment sont structurées les données ? Parler du format, des attributs et du type de données
+Les données ont été récupérés au format csv sur le site Kaggle. La plateforme met à disposition des jeux de données gratuitement. Les données sont regroupées dans un grand tableau qui traitent des informations importantes sur la sortie des jeux vidéos : le nom du jeu, les ventes par pays, l'année de sortie, le genre, etc. 
 ## But
 qu'est-ce que vous voulez découvrir ? Des tendances ? Vous voulez _explorer_ ou _expliquer_?
+Nous cherchons à découvrir comment les événements importants pris par les constructeurs ont influencé les ventes sur leur console ? Nous désirons également savoir à quel point les tendances actuelles dans le monde vidéoludique ont influencé les jeux développés par les studios des constructeurs de console. Comment ont-t-elles influencé leur stratégie ? A la fin, nous aimerions comprendre lequel des trois entreprises a effectuées les meilleurs choix au fil des années.
 ## Références
 Qui d'autre dans le web ou dans la recherche a utilisé ces données ? Dans quel but ?
-## Idées
-Est-ce que la marque Xbox est plus populaire que la Playstation ? Est-ce que les ventes digitales surpassent celles physiques ? Est-ce que les notes de Métacritic correspondent à celles des users ? Est-ce que la marque Xbox est en déclin ? Ventes des différents constructeurs de consoles ? Est-ce que les FPS surpassent les autres catégories ? Est-ce que la catégorie "Jeux pour enfants" est en train de disparaitre ? 
+Certains analystes spécialisés dans le monde du jeu vidéo ont utilisé ces datas pour répondre à des questions similaires et identifié les futures tendances possibles. 
+
+
+
