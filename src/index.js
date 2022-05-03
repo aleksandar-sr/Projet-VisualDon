@@ -2,9 +2,14 @@ import * as d3 from "d3";
 
 import file from "../data/vgsales.csv";
 
+import histogram from "./histogram.js";
+
 const data = file;
 
 console.log(data[0]);
+
+const histogames = histogram;
+console.log(histogames);
 
 // set the dimensions and margins of the graph
 const margin = { top: 10, right: 30, bottom: 30, left: 60 },

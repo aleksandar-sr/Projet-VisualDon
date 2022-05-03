@@ -1,14 +1,15 @@
+import * as d3 from "d3";
+
+import file from "../data/vgsales.csv";
+
+const data = file;
+
 // Définition des paramètres du graphique
 var largeur = 600,
   hauteur = 200,
   marge_gauche = 200;
 
 // Définition des données
-var donnees = [
-  { type: "Entire home/apt", count: 3000 },
-  { type: "Private room", count: 1000 },
-  { type: "Shared room", count: 500 },
-];
 
 // Définition des 3 échelles
 // - X : [0, sum(count)] -> [marge_gauche, largeur]
@@ -16,11 +17,11 @@ var donnees = [
 // - M : [type] -> couleurs choisies
 var echelleX = d3
     .scaleLinear()
-    .domain([0, d3.sum(donnees, (d) => d.count)])
+    .domain([0, d3.sum(data, (d) => d.count)])
     .range([0, largeur - marge_gauche]),
   echelleY = d3
     .scaleBand()
-    .domain(d3.map(donnees, (d) => d.type))
+    .domain(d3.map(data, (d) => d.type))
     .range([0, hauteur]),
   echelleM = d3
     .scaleOrdinal(["slateblue", "indianred", "olive"])
@@ -38,7 +39,7 @@ var svg = d3
 // Ajout des barres
 svg
   .selectAll("rect")
-  .data(donnees)
+  .data(data)
   .enter()
   .append("rect")
   .attr("x", marge_gauche)
@@ -50,7 +51,7 @@ svg
 // Ajout des modalités pour la légende
 svg
   .selectAll("text")
-  .data(donnees)
+  .data(data)
   .enter()
   .append("text")
   .attr("x", marge_gauche)
@@ -58,3 +59,5 @@ svg
   .style("text-anchor", "end")
   .attr("dx", -10)
   .html((d) => d.type);
+
+export default histogram.js;
