@@ -1,11 +1,12 @@
 const d3 = window.d3version4
-const d = require('./Video_Games_Sales_as_at_22_Dec_2016.csv')
+const d = require('../../data/Video_Games_Sales_as_at_22_Dec_2016.csv')
 
-
+/*----------- Dimension graphe ----------- */
 const margin = { top: 40, right: 120, bottom: 30, left: 40 };
 const width = 800 - margin.left - margin.right;
 const height = 400 - margin.top - margin.bottom;
 
+/*----------- Echelles des axes x et y -----------*/
 const x = d3.scaleLinear().domain([1983, 2020]).range([0, width]);
 const y = d3.scaleLinear().domain([0, 250]).range([height, 0]);
 const line = d3
@@ -21,14 +22,14 @@ const chart = d3
 const tooltip = d3.select("#tooltip");
 const tooltipLine = chart.append("line");
 
-const xAxis = d3.axisBottom(x).tickFormat(d3.format(".4"));
+const xAxis = d3.axisBottom(x).tickFormat(d3.format(".5"));
 const yAxis = d3.axisLeft(y).tickFormat(d3.format(".2s"));
 chart.append("g").call(yAxis);
 chart
   .append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(xAxis);
-chart.append("text").html("Vente par année").attr("x", 200);
+chart.append("text").html("Titre").attr("x", 200);
 
 let states, tipBox, data;
 let dataX = [];
@@ -47,6 +48,7 @@ let dataX = [];
         (a, b) => parseInt(b.Year_of_Release) > parseInt(a.Year_of_Release)
       );
 
+    // A
     let obx = {};
     for (let i = 0; i < data.length; i++) {
       const elt = data[i];
@@ -55,6 +57,7 @@ let dataX = [];
       obx[elt.Year_of_Release] = sub;
     }
 
+    // A
     data = [];
     for (const [key, value] of Object.entries(obx)) {
       let subObj = {
@@ -77,24 +80,24 @@ let dataX = [];
       data.push(subObj);
     }
 
-    let company = data;
+    const company = data;
     const Sony_Computer_Entertainment = {
       color: "red",
-      positionTile: 200,
+      positionTile: 150,
       name: "Sony",
       show: true,
       history: [],
     };
     const Nintendo = {
       color: "green",
-      positionTile: 100,
+      positionTile: 200,
       name: "Nintendo",
       show: true,
       history: [],
     };
     const Microsoft_Game_Studios = {
-      color: "#008AD3",
-      positionTile: 5,
+      color: "blue",
+      positionTile: 100,
       name: "Microsoft",
       show: true,
       history: [],
@@ -184,7 +187,6 @@ function drawTooltip() {
     .attr("y1", 0)
     .attr("y2", height);
 
-    console.log(d3.event.pageX, d3.event.pageY)
   tooltip
     .html(year)
     .style("display", "block")

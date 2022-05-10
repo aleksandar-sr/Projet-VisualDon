@@ -1,9 +1,9 @@
 const d3 = window.d3version4
-const d = require('./Video_Games_Sales_as_at_22_Dec_2016.csv')
+const d = require('../../data/Video_Games_Sales_as_at_22_Dec_2016.csv')
+
+// Dimension svg
 const width = 1100;
 const height = 400;
-
-let data = [];
 
 const svgContainer = d3
   .select("body")
@@ -13,9 +13,10 @@ const svgContainer = d3
 
 
     function draw(h = 1983) {
-      data = [];
+      let data = [];
       // h = année courante
       let dataX = d.filter((d) => parseInt(d.Year_of_Release) == h);
+      // Variables selon genre de jeux
       const Sports = dataX.filter((a) => a.Genre === "Sports");
       const Action = dataX.filter((a) => a.Genre === "Action");
       const Shooter = dataX.filter((a) => a.Genre === "Shooter");
@@ -25,6 +26,7 @@ const svgContainer = d3
           !["Action", "Sports", "Shooter", "Role-Playing"].includes(a.Genre)
       );
 
+      // Affichage des chiffres en %
       const sportPercent = parseFloat(
         (Sports.length * 100) / dataX.length
       ).toFixed(2);
@@ -41,6 +43,7 @@ const svgContainer = d3
         (Role.length * 100) / dataX.length
       ).toFixed(2);
 
+      // A 
       const addedConst = 100;
       const minR = 65;
       const sportobj = {
@@ -98,7 +101,7 @@ const svgContainer = d3
 
           var elem = svgContainer.selectAll("div").data(data);
 
-          // Remove circles from DOM
+          // Enlever les cercles du DOM
           var elemEnter = elem.enter();
 
           // création cercle de base
@@ -112,6 +115,8 @@ const svgContainer = d3
             .duration(500);
 
           elem.remove();
+
+          // Textes dans les cercles
           elemEnter
             .append("text")
             .style("fill", "white")
@@ -140,18 +145,20 @@ const svgContainer = d3
       .attr("height", 20).attr("class", "test")
 
    
-    var sliderScale = d3
-      .scaleLinear()
-      .domain([1983, 2016])
-      .range([0, 200])
-      .clamp(true);
-
+ 
 
     // Création du slider
     const slider = svg
       .append("g")
       .attr("class", "slider")
       .attr("transform", "translate(" + 100 + "," + 10 + ")");
+
+      const sliderScale = d3
+      .scaleLinear()
+      .domain([1983, 2016])
+      .range([0, 200])
+      .clamp(true);
+
 
     slider
       .append("line")
@@ -182,7 +189,9 @@ const svgContainer = d3
             changeYear(sliderScale.invert(d3.event.x));
           })
       );
-    var handle = slider
+
+
+    let handle = slider
       .insert("circle", ".track-overlay")
       .attr("class", "handle")
       .attr("r", 9);
