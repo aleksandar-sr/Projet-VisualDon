@@ -1,0 +1,142 @@
+/*-------General-------*/
+
+body {
+  background-image: url(/imgs/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: monospace !important;
+}
+
+p{
+  color: beige;
+  font-size: 20px;
+}
+
+.app {
+  text-align: center;
+  color: white;
+}
+.app h1 {
+  font-weight: bolder;
+  font-size: 50px;
+  margin-top: 10%;
+}
+
+.d-flex {
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-top: 20%;
+  font-size: 20px;
+  font-weight: 800;
+}
+.app p {
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
+  color: #7b7b7b;
+}
+.label {
+  color: white !important;
+}
+.line {
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+#round1 {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  border: 10px #e6e6e6 solid;
+  margin: auto;
+  margin-top: 50px;
+}
+#round2 {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: #e6e6e6;
+  margin: auto;
+  cursor: pointer;
+  margin-top: 20px;
+}
+img {
+  margin-top: 5px;
+  width: 60px;
+}
+/*-------Histogramme-------*/
+.bar {
+  fill: #5f89ad;
+}
+
+.axis {
+  font-size: 14px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  display: none;
+}
+
+.label {
+  font-size: 13px;
+}
+
+/*-------Line Chart-------*/
+
+#tooltip {
+  position:absolute;
+  background-color:#A6A6A6;
+  padding: 5px;
+}
+
+/*-------Bubble-------*/
+.ticks {
+  font: 10px sans-serif;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+.test {
+  /* background-color: red !important; */
+  margin-left: 20%;
+}
+.bubl {
+  /* background-color: green !important; */
+  margin: auto;
+}
+
+#bubble > h1 {
+  color: white; 
+  margin-left: 30%;
+}

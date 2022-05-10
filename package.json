@@ -2,7 +2,7 @@
   "name": "Projet-VisualDon",
   "version": "1.0.0",
   "description": "Video Games",
-  "main": "src/index.js",
+  "main": "",
   "scripts": {
     "build": "babel src -d lib",
     "start": "webpack-dev-server"
@@ -23,7 +23,7 @@
     "babel-preset-es2015": "^6.24.1",
     "csv-loader": "^3.0.3",
     "html-webpack-plugin": "^5.5.0",
-    "webpack": "^5.70.0",
+    "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
   }
