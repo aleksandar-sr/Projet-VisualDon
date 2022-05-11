@@ -1,10 +1,11 @@
-const d3 = window.d3version3;
+const d3 = window.d3v3;
 const d = require("../../data/Video_Games_Sales_as_at_22_Dec_2016.csv");
 
 let states, tipBox;
 let dataX = [];
 
 // Chargement et filtrage des données
+// Recupère uniquement les jeux concernés sous forme de tab
 let data = d
   .filter((d) =>
     [
@@ -13,10 +14,12 @@ let data = d
       "Nintendo",
     ].includes(d.Publisher)
   )
-  .sort((a, b) => parseFloat(b.Global_Sales) - parseFloat(a.Global_Sales));
+  .sort((a, b) => parseFloat(b.Global_Sales) - parseFloat(a.Global_Sales)); // tri en fonction des ventes
 
 // Nombre de jeux affichés dans l'histogramme
 data = data.slice(0, 7);
+
+// Chaque ligne formate la barre pour qu'elle ait un nom et une valeur
 data = data.map((d) => {
   return { name: d.Name, value: parseFloat(d.Global_Sales) };
 });
@@ -41,7 +44,7 @@ const svg = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-const x = d3.scale
+var x = d3.scale
   .linear()
   .range([0, width])
   .domain([
@@ -62,8 +65,7 @@ const y = d3.scale
 
 let yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
 
-
-const nomJeux = svg
+svg
   .append("g")
   .attr("class", "y axis")
   .call(yAxis)
@@ -100,4 +102,13 @@ bars
   })
   .text(function (d) {
     return d.value;
-  });
+  })
+
+
+   // Animation
+svg.selectAll("bars")
+.transition()
+.duration(800)
+.attr("y", function(d) { return yAxis(d.Value); })
+.attr("height", function(d) { return height - yAxis(d.Value); })
+.delay(function(d,i){console.log(i) ; return(i*100)})

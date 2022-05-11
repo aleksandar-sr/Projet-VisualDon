@@ -1,4 +1,6 @@
-const d3 = window.d3version4
+//La version qu'on veut utiliser de d3
+const d3 = window.d3v4
+//Avec le require ça transforme en tab
 const d = require('../../data/Video_Games_Sales_as_at_22_Dec_2016.csv')
 
 // Dimension svg
@@ -27,7 +29,7 @@ const svgContainer = d3
       );
 
       // Affichage des chiffres en %
-      const sportPercent = parseFloat(
+      const SportPercent = parseFloat(
         (Sports.length * 100) / dataX.length
       ).toFixed(2);
       const ActionPercent = parseFloat(
@@ -43,50 +45,61 @@ const svgContainer = d3
         (Role.length * 100) / dataX.length
       ).toFixed(2);
 
-      // A 
-      const addedConst = 100;
+      
+      // addedSize pour question esthetique
+      // On définit un rayon de base avec minR -> pour que nos cercles aient un minimum de rayon
+      const addedSize = 100;
       const minR = 65;
-      const sportobj = {
-        CategoryName: "Sports: " + sportPercent,
+
+      // En objet car ça permet de filtrer par genre
+      const sportObject = {
+        CategoryName: "Sports: " + SportPercent,
         color: "blue",
-        r: (addedConst * sportPercent) / 100 + minR,
+        r: (addedSize * SportPercent) / 100 + minR,
         SkillProficiencyId: 1,
       };
-      data.push(sportobj);
-      const actobj = {
+      data.push(sportObject);
+
+      const actionObject = {
         CategoryName: "Action: " + ActionPercent,
         color: "red",
-        r: (addedConst * ActionPercent) / 100 + minR,
+        r: (addedSize * ActionPercent) / 100 + minR,
         SkillProficiencyId: 2,
       };
-      data.push(actobj);
-      const schhoterObj = {
+      data.push(actionObject);
+
+      const shooterObject = {
         CategoryName: "Shooter: " + ShooterPercent,
         color: "green",
-        r: (addedConst * ShooterPercent) / 100 + minR,
+        r: (addedSize * ShooterPercent) / 100 + minR,
         SkillProficiencyId: 4,
       };
-      data.push(schhoterObj);
+      data.push(shooterObject);
 
-      const RoleObj = {
+      const roleObject = {
         CategoryName: "Role-Playing: " + RolePercent,
         color: "#97538D",
-        r: (addedConst * RolePercent) / 100 + minR,
+        r: (addedSize * RolePercent) / 100 + minR,
         SkillProficiencyId: 4,
       };
-      data.push(RoleObj);
-      const otherOb = {
+
+      data.push(roleObject);
+      const otherObject = {
         CategoryName: "Other: " + OtherPercent,
         color: "#4F4F4F",
-        r: (addedConst * OtherPercent) / 100 + minR,
+        r: (addedSize * OtherPercent) / 100 + minR,
         SkillProficiencyId: 3,
       };
-      data.push(otherOb);
+      data.push(otherObject);
 
+      // Tri
       data = data.sort((a, b) => a.r - b.r);
-      const cxBase = 205;
+
+      // Coord de base, placement sur l'axe Xs
+      const cxBase = 220;
       const cxOffset = 100;
 
+      // Suppression du texte et cercles lors de changement d'années
       var elem = svgContainer.selectAll("div");
       elem.remove();
       const cercle = d3.selectAll("circle");
@@ -94,6 +107,7 @@ const svgContainer = d3
       const text = d3.selectAll(".removed");
       text.remove();
 
+      // Cercles dans un tableau, et ça boucle pour chaque cercle
       for (let i = 0; i < data.length; i++) {
         const props = data[i];
         if (parseInt(props.r) - minR > 0) {
@@ -111,8 +125,8 @@ const svgContainer = d3
             .attr("cy", 200)
             .attr("r", props.r)
             .style("fill", props.color)
-            .transition()
-            .duration(500);
+            //.transition()
+            //.duration(500);
 
           elem.remove();
 
@@ -144,10 +158,7 @@ const svgContainer = d3
       .attr("width", '50%')
       .attr("height", 20).attr("class", "test")
 
-   
- 
-
-    // Création du slider
+    /*----------- Création du slider -----------*/
     const slider = svg
       .append("g")
       .attr("class", "slider")

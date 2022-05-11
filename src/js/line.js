@@ -1,4 +1,4 @@
-const d3 = window.d3version4
+const d3 = window.d3v4;
 const d = require('../../data/Video_Games_Sales_as_at_22_Dec_2016.csv')
 
 /*----------- Dimension graphe ----------- */
@@ -19,8 +19,6 @@ const chart = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-const tooltip = d3.select("#tooltip");
-const tooltipLine = chart.append("line");
 
 const xAxis = d3.axisBottom(x).tickFormat(d3.format(".5"));
 const yAxis = d3.axisLeft(y).tickFormat(d3.format(".2s"));
@@ -31,11 +29,11 @@ chart
   .call(xAxis);
 chart.append("text").html("Titre").attr("x", 200);
 
-let states, tipBox, data;
+let tipBox, data;
 let dataX = [];
 
-    states = d;
     data = d;
+    // On prend uniquement les données qui nous intéresse, rangée
     data = data
       .filter((d) =>
         [
@@ -48,7 +46,10 @@ let dataX = [];
         (a, b) => parseInt(b.Year_of_Release) > parseInt(a.Year_of_Release)
       );
 
-    // A
+    // Création objet
+    // Pour chaque élément, pour regrouper par année
+    //sub = sous objet
+    // Par année
     let obx = {};
     for (let i = 0; i < data.length; i++) {
       const elt = data[i];
@@ -57,7 +58,8 @@ let dataX = [];
       obx[elt.Year_of_Release] = sub;
     }
 
-    // A
+    // Année = key
+    // objet en tableau
     data = [];
     for (const [key, value] of Object.entries(obx)) {
       let subObj = {
@@ -67,6 +69,8 @@ let dataX = [];
         Microsoft_Game_Studios: 0,
       };
 
+      // on refait une boucle ici, c'est un tab
+      // el = obj contenant les ventes des constructeurs
       for (let j = 0; j < value.length; j++) {
         const elt = value[j];
         subObj[elt.Publisher.split(" ").join("_")] = parseFloat(
@@ -85,8 +89,8 @@ let dataX = [];
       color: "red",
       positionTile: 150,
       name: "Sony",
-      show: true,
-      history: [],
+      //show: true,
+      history: [], // ensemble de valeur qui vont être tracé sur le graphe
     };
     const Nintendo = {
       color: "green",
@@ -103,6 +107,7 @@ let dataX = [];
       history: [],
     };
 
+    // Boucle qui recherche pour chaque année
     for (let d = 0; d < company.length; d++) {
       const elt = company[d];
       Microsoft_Game_Studios.history.push({
@@ -122,15 +127,17 @@ let dataX = [];
       });
     }
 
-    // Tri des années
+    // Tri des jeux 
     Sony_Computer_Entertainment.history.sort((a, b) => a.year - b.year);
     Nintendo.history.sort((a, b) => a.year - b.year);
     Microsoft_Game_Studios.history.sort((a, b) => a.year - b.year);
 
     // dataX = les couleurs
+    // dataX qu'on trace dans le DOM
     dataX.push(Sony_Computer_Entertainment);
     dataX.push(Nintendo);
     dataX.push(Microsoft_Game_Studios);
+
 
     chart
       .selectAll()
@@ -165,12 +172,18 @@ let dataX = [];
       .on("mouseout", removeTooltip);
 
 
+/*----------- Tooltip -----------*/
+
 function removeTooltip() {
   if (tooltip) tooltip.style("display", "none");
   if (tooltipLine) tooltipLine.attr("stroke", "none");
 }
 
+const tooltip = d3.select("#tooltip");
+const tooltipLine = chart.append("line");
+
 // On affiche les données dans un petit rectangle
+//-----pointer au lieu de mouse
 function drawTooltip() {
   const year = Math.floor(x.invert(d3.mouse(tipBox.node())[0]));
   dataX.sort((a, b) => {
@@ -187,10 +200,14 @@ function drawTooltip() {
     .attr("y1", 0)
     .attr("y2", height);
 
+
+  // insérer dynamiquement les contenus dans le tooltip
+  // dans la methode drawtooltip qui l'appelle quand on est sur la line, on recupere en premier la valeur sur l'axe x qui est l'année
+  // et ensuite, on peut aller dans le history chercher la valeur qui correspond à l'année, puis formater le reste d'attribut et attribuer au html du tooltip
   tooltip
     .html(year)
     .style("display", "block")
-    .style("left", d3.event.pageX + 20+"px")
+    .style("left", d3.event.pageX + 20 + "px")
     .style("top", d3.event.pageY - 20 +"px")
     .selectAll()
     .data(dataX)
@@ -206,4 +223,7 @@ function drawTooltip() {
           ? ", Sortie jeu: " + d.history.find((h) => h.year == year).sortie
           : "")
     );
+
+    
+
 }
