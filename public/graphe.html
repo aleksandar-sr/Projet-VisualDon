@@ -2,70 +2,85 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://d3js.org/d3.v4.min.js"></script>
-    <script>
-        window.d3v4 = d3
-        window.d3 = null
-    </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://d3js.org/d3.v4.min.js"></script>
+  <script>
+    window.d3v4 = d3
+    window.d3 = null
+  </script>
 
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script>
-        window.d3v3 = d3
-        window.d3 = null
-    </script>
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script>
+    window.d3v3 = d3
+    window.d3 = null
+  </script>
 
-    <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 
-    <title>Projet VisualDon</title>
+  <title>Projet VisualDon</title>
 </head>
 
 <body>
-    <h2>Graphes</h2>
-    <div class="line">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias odit aliquam beatae?</p>
-        <div id='tooltip'></div>
-        <svg width='900' height='400'></svg>
-    </div>
+  <h2>Graphes</h2>
+  <div class="line">
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
+      recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias
+      odit aliquam beatae?</p>
+    <div id='tooltip'></div>
+    <svg width='900' height='400'></svg>
+  </div>
 
-    <div id="histogram">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias odit aliquam beatae?</p>
-    </div>
+  <div id="histogram">
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
+      recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias
+      odit aliquam beatae?</p>
+  </div>
 
-    <div id="bubble">
-        <h3>1983</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias odit aliquam beatae?</p>
-    </div>
-    <div>
-        <table>
-            <tr>
-              <th>Genre</th>
-              <th>Définition</th>
-            </tr>
-            <tr>
-              <td>Action</td>
-              <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-            </tr>
-            <tr>
-              <td>Role-Playing</td>
-              <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-            </tr>
-            <tr>
-                <td>Shooter</td>
-                <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-              </tr>
-              <tr>
-                <td>Sports</td>
-                <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-              </tr>
-              <tr>
-                <td>Platform</td>
-                <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-              </tr>
-          </table>
-    </div>
+  <div id="bubble">
+    <h3>1983</h3>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
+      recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias
+      odit aliquam beatae?</p>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Genre</th>
+        <th>Définition</th>
+      </tr>
+      <tr>
+        <td>Action</td>
+        <td>Ce sont des types de jeux qui demandent à ce que le joueur réagisse en temps réel à une situation. Ce genre
+          valorise la rapidité, dextérité et habileté du joueur. Ce genre est très souvent mélangé à d’autres. Exemple :
+          Action-RPG, Action-stratégie, etc. Dans notre dataset, la catégorie Action-Aventure est identique à la
+          catégorie
+          Action.</td>
+      </tr>
+      <tr>
+        <td>Role-Playing</td>
+        <td>Communément nommé RPG, cette catégorie provient directement des jeux de rôle sur table basés sur Donjons et
+          Dragons. Tout le gameplay est basé sur l’évolution de son personnage. Au fur et à mesure de sa progression, le
+          joueur acquiert des points d’expérience qui permettent d’améliorer les statistiques de son personnage.</td>
+      </tr>
+      <tr>
+        <td>Shooter</td>
+        <td>Dans cette catégorie, nous mettons tous les types de jeux où le joueur manie une arme et nous évoluons dans
+          l’univers du jeu soi à travers les yeux du personnage ou soi en le contrôlant tout en ayant une vue de dos.
+        </td>
+      </tr>
+      <tr>
+        <td>Sports</td>
+        <td>Ce type de jeu simule diverses disciplines sportives réelles à travers son gameplay.</td>
+      </tr>
+      <tr>
+        <td>Platform</td>
+        <td>Le joueur contrôle son avatar et il doit travers les niveaux en sautant d’une plate-forme à une autre, tout
+          en esquivant les obstacles et en se débarrassant des ennemis.</td>
+      </tr>
+    </table>
+  </div>
 
 </body>
 
