@@ -1,24 +1,26 @@
 /*-------General-------*/
 
-
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap");
 
 body {
-  background-image: url(/imgs/background.jpg);
+  display: block;
+  position: relative;
+  background-image: url(/imgs/backgroundB.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: monospace !important;
+  font-family: "Lato";
+  margin: 5%;
 }
 
-p{
+p {
   color: beige;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 #bodyGraph > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 }
 
 .app {
@@ -51,8 +53,15 @@ p{
   color: white !important;
 }
 .line {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(51, 51, 51, 0.8);
   text-align: center;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding-bottom: 5%;
 }
 #round1 {
   width: 120px;
@@ -77,34 +86,39 @@ img {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 60px;
+  color: #e6e6e6;
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+h3 {
+  font-size: 35px;
   color: #e6e6e6;
   text-align: center;
 }
 
-h3{
-  font-size: 30px;
-  color: #e6e6e6;
-  text-align: center;
-}
-
-table{
-  display: flex;
-  justify-content: center;
-  text-align: center;
+table {
   color: white;
   border-collapse: collapse;
+  background-color: #304549;
 }
 
-th, td{
+th,
+td {
   border: 1px solid black;
   padding: 10px;
   border-color: #dcddde;
 }
 
 /*-------Histogramme-------*/
+
+#histogram {
+  margin-bottom: 15%;
+}
+
 .bar {
-  fill: #5f89ad;
+  fill: #2dd295;
 }
 
 .axis {
@@ -121,15 +135,40 @@ th, td{
   font-size: 13px;
 }
 
+.yAxis  {
+  margin-right: 20px;
+}
+
+#histogram h3 {
+  background-color: #132329;
+  padding: 10px;
+}
+
 /*-------Line Chart-------*/
 
+.line {
+  margin-bottom: 15%;
+}
+
 #tooltip {
-  position:absolute;
-  background-color:#A6A6A6;
+  position: absolute;
+  background-color: #a6a6a6;
   padding: 5px;
 }
 
 /*-------Bubble-------*/
+#bubble > h3 {
+  font-size: 40px;
+  color: rgb(225, 253, 238);
+  background-color: #e1ca49;
+  margin-right: 60%;
+}
+
+.histoContainer h3 {
+  background-color: #304549;
+  padding: 1.5%;
+}
+
 .ticks {
   font: 10px sans-serif;
 }
@@ -172,3 +211,26 @@ th, td{
   margin: auto;
 }
 
+#actionColor {
+  background-color: red;
+}
+
+#rpColor {
+  background-color: rgb(151, 83, 141);
+}
+
+#actionColor {
+  background-color: red;
+}
+
+#shooterColor {
+  background-color: green;
+}
+
+#sportColor {
+  background-color: blue;
+}
+
+#platColor {
+  background-color: #BB9600;
+}

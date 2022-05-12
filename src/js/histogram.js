@@ -67,9 +67,9 @@ let yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
 
 svg
   .append("g")
-  .attr("class", "y axis")
+  .attr("class", "yAxis")
   .call(yAxis)
-  .style("stroke", "white");
+  .style("fill", "white");
 
 
 /*----------- Création des barres -----------*/
@@ -81,7 +81,7 @@ bars
   .attr("y", function (d) {
     return y(d.name);
   })
-  .style("stroke", "orange")
+  .style("stroke", "white")
   .attr("height", y.rangeBand())
   .attr("x", 0)
   .attr("width", function (d) {

@@ -166,8 +166,7 @@ const svg = d3
   .select(".bubl")
   .append("svg")
   .attr("width", "50%")
-  .attr("height", 20)
-  .attr("class", "test");
+  .attr("height", 20);
 
 /*----------- Création du slider -----------*/
 const slider = svg
@@ -218,7 +217,7 @@ let handle = slider
 
 // h = année
 function changeYear(h) {
-  d3.select("h3").text(parseInt(h));
+  d3.select("#countY").text(parseInt(h));
   draw(parseInt(h));
   handle = slider
     .insert("circle", ".track-overlay")

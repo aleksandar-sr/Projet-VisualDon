@@ -29,7 +29,7 @@ chart
   .append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(xAxis);
-chart.append("text").html("Titre").attr("x", 200);
+  
 
 let tipBox, data;
 let dataX = [];
@@ -99,23 +99,20 @@ console.log("Données avant affichage", data);
 const company = data;
 const Sony_Computer_Entertainment = {
   color: "red",
-  positionTile: 150,
+  positionTile: 175,
   name: "Sony",
-  //show: true,
   history: [], // ensemble de valeur qui vont être tracé sur le graphe
 };
 const Nintendo = {
   color: "green",
   positionTile: 200,
   name: "Nintendo",
-  show: true,
   history: [],
 };
 const Microsoft_Game_Studios = {
   color: "blue",
-  positionTile: 100,
+  positionTile: 150,
   name: "Microsoft",
-  show: true,
   history: [],
 };
 
@@ -207,7 +204,7 @@ function drawTooltip() {
   });
 
   tooltipLine
-    .attr("stroke", "black")
+    .attr("stroke", "white")
     .attr("x1", x(year))
     .attr("x2", x(year))
     .attr("y1", 0)

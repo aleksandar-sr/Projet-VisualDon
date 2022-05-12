@@ -2,85 +2,121 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="http://d3js.org/d3.v4.min.js"></script>
-  <script>
-    window.d3v4 = d3
-    window.d3 = null
-  </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script>
+        window.d3v4 = d3
+        window.d3 = null
+    </script>
 
-  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script>
-    window.d3v3 = d3
-    window.d3 = null
-  </script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        window.d3v3 = d3
+        window.d3 = null
+    </script>
 
-  <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
-  <title>Projet VisualDon</title>
+    <title>Projet VisualDon</title>
 </head>
 
-<body>
-  <h2>Graphes</h2>
-  <div class="line">
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
-      recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias
-      odit aliquam beatae?</p>
-    <div id='tooltip'></div>
-    <svg width='900' height='400'></svg>
-  </div>
+<body class="hero">
+    <h2>Graphes</h2>
+    <div class="line">
+        <h3>Ventes par constructeurs de jeux vidéos</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
+            recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero,
+            alias
+            odit aliquam beatae?</p>
+        <div id='tooltip'></div>
+        <svg width='1000' height='400'></svg>
+    </div>
 
-  <div id="histogram">
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
-      recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias
-      odit aliquam beatae?</p>
-  </div>
+    <div id="histogram">
+        <h3>Top 7 des meilleures ventes de jeux vidéo de tous les temps</h3>
+        <p>À travers ce graphique, nous remarquons sans grande surprise que ce sont les jeux Nintendo qui sont
+            majoritairement représentés. La seule exception est Tetris.
+        </p>
+        <p>
+            Ces chiffres justifient l’hypothèse que les gens achètent principalement les consoles Nintendo à cause des
+            jeux exclusifs à l’écosystème de la console et montre la puissance des licences de la multinationale.
+        </p>
+    </div>
 
-  <div id="bubble">
-    <h3>1983</h3>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quis blanditiis labore laborum temporibus eum
-      recusandae reiciendis aperiam laboriosam! Eos voluptas consequuntur reprehenderit consequatur ullam libero, alias
-      odit aliquam beatae?</p>
-  </div>
-  <div>
-    <table>
-      <tr>
-        <th>Genre</th>
-        <th>Définition</th>
-      </tr>
-      <tr>
-        <td>Action</td>
-        <td>Ce sont des types de jeux qui demandent à ce que le joueur réagisse en temps réel à une situation. Ce genre
-          valorise la rapidité, dextérité et habileté du joueur. Ce genre est très souvent mélangé à d’autres. Exemple :
-          Action-RPG, Action-stratégie, etc. Dans notre dataset, la catégorie Action-Aventure est identique à la
-          catégorie
-          Action.</td>
-      </tr>
-      <tr>
-        <td>Role-Playing</td>
-        <td>Communément nommé RPG, cette catégorie provient directement des jeux de rôle sur table basés sur Donjons et
-          Dragons. Tout le gameplay est basé sur l’évolution de son personnage. Au fur et à mesure de sa progression, le
-          joueur acquiert des points d’expérience qui permettent d’améliorer les statistiques de son personnage.</td>
-      </tr>
-      <tr>
-        <td>Shooter</td>
-        <td>Dans cette catégorie, nous mettons tous les types de jeux où le joueur manie une arme et nous évoluons dans
-          l’univers du jeu soi à travers les yeux du personnage ou soi en le contrôlant tout en ayant une vue de dos.
-        </td>
-      </tr>
-      <tr>
-        <td>Sports</td>
-        <td>Ce type de jeu simule diverses disciplines sportives réelles à travers son gameplay.</td>
-      </tr>
-      <tr>
-        <td>Platform</td>
-        <td>Le joueur contrôle son avatar et il doit travers les niveaux en sautant d’une plate-forme à une autre, tout
-          en esquivant les obstacles et en se débarrassant des ennemis.</td>
-      </tr>
-    </table>
-  </div>
+    <div class="histoContainer">
+        <h3>Genre</h3>
+        <p>Un fait intéressant a été révélé avec la bulle Platform. Malgré son faible pourcentage, nous avons remarqué,
+            après l’analyse du graphique : top des jeux les plus vendus durant ces dernières années, que ce sont les
+            jeux de Platform Nintendo qui sont les plus vendus.</p>
+        <p>Par conséquent, nous pouvons presque en déduire que Nintendo a le monopole des jeux de Platform dans
+            l’univers du jeu vidéo, mais maintiens toujours des ventes plus élevées que ces concurrentes, comme l’a
+            démontré le graphique “Evolution des ventes des constructeurs”.</p>
+        <p> A contrario, la bulle Shooter est moins élevé que les autres et se placent souvent en dernière position.
+            Ironiquement, nous pouvons établir une corrélation avec la position de Microsoft dans le classement des
+            constructeurs de jeux vidéos dans le graphique “Évolution des ventes des constructeurs”.</p>
+        <p>Cette typologie de jeux est très en vogue chez Microsoft, notamment avec ces licences les plus connues : Halo
+            et Gears of War.</p>
+        <p>Concernant Sony, l’entreprise a fortement axé ses exclusivités sur les jeux action-aventure. En choisissant
+            cette stratégie, le constructeur a adapté sa stratégie à la tendance du marché actuelle, ce qui lui a permis
+            de fidéliser ses joueurs.</p>
+
+        </p>
+        <div id="tabGenre">
+            <table>
+                <tr>
+                    <th>Genre</th>
+                    <th>Définition</th>
+                </tr>
+                <tr>
+                    <td id="actionColor">Action</td>
+                    <td>Ce sont des types de jeux qui demandent à ce que le joueur réagisse en temps réel à une
+                        situation.
+                        Ce genre
+                        valorise la rapidité, dextérité et habileté du joueur. Ce genre est très souvent mélangé à
+                        d’autres.
+                        Exemple :
+                        Action-RPG, Action-stratégie, etc. Dans notre dataset, la catégorie Action-Aventure est
+                        identique à
+                        la
+                        catégorie
+                        Action.</td>
+                </tr>
+                <tr>
+                    <td id="rpColor">Role-Playing</td>
+                    <td>Communément nommé RPG, cette catégorie provient directement des jeux de rôle sur table basés sur
+                        Donjons et
+                        Dragons. Tout le gameplay est basé sur l’évolution de son personnage. Au fur et à mesure de sa
+                        progression, le
+                        joueur acquiert des points d’expérience qui permettent d’améliorer les statistiques de son
+                        personnage.</td>
+                </tr>
+                <tr>
+                    <td id="shooterColor">Shooter</td>
+                    <td>Dans cette catégorie, nous mettons tous les types de jeux où le joueur manie une arme et nous
+                        évoluons dans
+                        l’univers du jeu soi à travers les yeux du personnage ou soi en le contrôlant tout en ayant une
+                        vue
+                        de dos.
+                    </td>
+                </tr>
+                <tr>
+                    <td id="sportColor">Sports</td>
+                    <td>Ce type de jeu simule diverses disciplines sportives réelles à travers son gameplay.</td>
+                </tr>
+                <tr>
+                    <td id="platColor">Platform</td>
+                    <td>Le joueur contrôle son avatar et il doit travers les niveaux en sautant d’une plate-forme à une
+                        autre, tout
+                        en esquivant les obstacles et en se débarrassant des ennemis.</td>
+                </tr>
+            </table>
+        </div>
+        <div id="bubble">
+            <h3 id="countY">1983</h3>
+        </div>
+    </div>
 
 </body>
 
