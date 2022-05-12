@@ -204,7 +204,7 @@ function drawTooltip() {
   });
 
   tooltipLine
-    .attr("stroke", "white")
+    .attr("stroke", "black")
     .attr("x1", x(year))
     .attr("x2", x(year))
     .attr("y1", 0)
