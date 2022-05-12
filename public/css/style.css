@@ -9,7 +9,7 @@ body {
 
 p{
   color: beige;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #bodyGraph > div {
@@ -73,6 +73,33 @@ img {
   margin-top: 5px;
   width: 60px;
 }
+
+h2 {
+  font-size: 40px;
+  color: #e6e6e6;
+  text-align: center;
+}
+
+h3{
+  font-size: 30px;
+  color: #e6e6e6;
+  text-align: center;
+}
+
+table{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  border-collapse: collapse;
+}
+
+th, td{
+  border: 1px solid black;
+  padding: 10px;
+  border-color: #dcddde;
+}
+
 /*-------Histogramme-------*/
 .bar {
   fill: #5f89ad;
@@ -143,7 +170,3 @@ img {
   margin: auto;
 }
 
-#bubble > h1 {
-  color: white; 
-  text-align: center;
-}

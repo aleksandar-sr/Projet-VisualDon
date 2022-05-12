@@ -218,7 +218,7 @@ let handle = slider
 
 // h = année
 function changeYear(h) {
-  d3.select("h1").text(parseInt(h));
+  d3.select("h3").text(parseInt(h));
   draw(parseInt(h));
   handle = slider
     .insert("circle", ".track-overlay")
