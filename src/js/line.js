@@ -10,7 +10,7 @@ const width = 800 - margin.left - margin.right;
 const height = 400 - margin.top - margin.bottom;
 
 /*----------- Echelles des axes x et y -----------*/
-const x = d3.scaleLinear().domain([1983, 2020]).range([0, width]);
+const x = d3.scaleLinear().domain([1983, 2018]).range([0, width]);
 const y = d3.scaleLinear().domain([0, 250]).range([height, 0]);
 const line = d3
   .line()
@@ -98,19 +98,19 @@ console.log("Données avant affichage", data);
 
 const company = data;
 const Sony_Computer_Entertainment = {
-  color: "red",
+  color: "blue",
   positionTile: 175,
   name: "Sony",
   history: [], // ensemble de valeur qui vont être tracé sur le graphe
 };
 const Nintendo = {
-  color: "green",
+  color: "red",
   positionTile: 200,
   name: "Nintendo",
   history: [],
 };
 const Microsoft_Game_Studios = {
-  color: "blue",
+  color: "green",
   positionTile: 150,
   name: "Microsoft",
   history: [],
