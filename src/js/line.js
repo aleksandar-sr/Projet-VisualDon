@@ -1,8 +1,8 @@
+// La version qu'on veut utiliser de d3 (ici la v4)
 const d3 = window.d3v4;
-const d = require("../../data/Video_Games_Sales_as_at_22_Dec_2016.csv");
+// d pour data
+import * as d from "../../data/Video_Games_Sales_as_at_22_Dec_2016.csv";
 
-// Visualisation du tableau dans la console qui contient les données du fichier csv
-console.log("Tableau de données", d);
 
 /*----------- Dimension graphe ----------- */
 const margin = { top: 40, right: 120, bottom: 30, left: 40 };
@@ -31,12 +31,10 @@ chart
   .call(xAxis);
   
 
-let tipBox, data;
-let dataX = [];
-
-data = d;
-// On prend uniquement les données qui nous intéresse, rangée
-data = data
+// On prend uniquement les données qui nous intéresse, 
+// filtrées pour prendre en compte que les grands constructeurs
+let data = d;
+data 
   .filter((d) =>
     [
       "Microsoft Game Studios",
@@ -46,62 +44,50 @@ data = data
   )
   .sort((a, b) => parseInt(b.Year_of_Release) > parseInt(a.Year_of_Release));
 
-// Affichage des données filtrées
-console.log("Données rangées après le filtre 1", data);
 
-// Création objet
-// Pour chaque élément, pour regrouper par année
-//sub = sous objet
-// Par année
-let obx = {};
+// Pour chaque élément, regrouper par année
+// sub = sous-objet
+let editorObjects = {};
 for (let i = 0; i < data.length; i++) {
   const elt = data[i];
-  let sub = obx[elt.Year_of_Release] || [];
+  let sub = editorObjects[elt.Year_of_Release] || [];
   sub.push(elt);
-  obx[elt.Year_of_Release] = sub;
+  editorObjects[elt.Year_of_Release] = sub;
 }
 
-// Restructuration des datas dans la console
-console.log(
-  "Données restructurées après la première boucle et converties en objet",
-  obx
-);
 
-// Année = key
-// objet en tableau
-data = [];
-for (const [key, value] of Object.entries(obx)) {
-  let subObj = {
+// Paire clé/valeur avec année en clé, tableau d'objets en valeur
+data = []
+for (const [key, value] of Object.entries(editorObjects)) {
+  let yearEditors = {
     Year_of_Release: key,
     Sony_Computer_Entertainment: 0,
     Nintendo: 0,
     Microsoft_Game_Studios: 0,
   };
 
-  // on refait une boucle ici, c'est un tab
-  // el = obj contenant les ventes des constructeurs
+
+  // Avec cette boucle, on obtient les ventes des constructeur par année
   for (let j = 0; j < value.length; j++) {
     const elt = value[j];
-    subObj[elt.Publisher.split(" ").join("_")] = parseFloat(
-      subObj[elt.Publisher.split(" ").join("_")]
+    yearEditors[elt.Publisher.split(" ").join("_")] = parseFloat(
+      yearEditors[elt.Publisher.split(" ").join("_")]
     )
-      ? parseFloat(subObj[elt.Publisher.split(" ").join("_")]) +
+      ? parseFloat(yearEditors[elt.Publisher.split(" ").join("_")]) +
         parseFloat(elt.Global_Sales)
       : parseFloat(elt.Global_Sales);
-    subObj["Name__" + elt.Publisher.split(" ").join("_")] = elt.Name;
+    yearEditors["Name__" + elt.Publisher.split(" ").join("_")] = elt.Name;
   }
-  data.push(subObj);
+  data.push(yearEditors);
 }
 
-// Etat des données avant de les afficher sur le graphique
-console.log("Données avant affichage", data);
-
-const company = data;
+// On regroupe pour les 3 grands constructeurs
+const company = data
 const Sony_Computer_Entertainment = {
   color: "blue",
   positionTile: 175,
   name: "Sony",
-  history: [], // ensemble de valeur qui vont être tracé sur le graphe
+  history: [], 
 };
 const Nintendo = {
   color: "red",
@@ -116,7 +102,9 @@ const Microsoft_Game_Studios = {
   history: [],
 };
 
-// Boucle qui recherche pour chaque année
+
+// Cette boucle permet d'insérer les objets contenant la valeur, l'année et le jeu phare pour chaque constructeur
+// dans le tableau history
 for (let d = 0; d < company.length; d++) {
   const elt = company[d];
   Microsoft_Game_Studios.history.push({
@@ -136,19 +124,17 @@ for (let d = 0; d < company.length; d++) {
   });
 }
 
-// Tri des jeux
+// Tri des jeux par année
 Sony_Computer_Entertainment.history.sort((a, b) => a.year - b.year);
 Nintendo.history.sort((a, b) => a.year - b.year);
 Microsoft_Game_Studios.history.sort((a, b) => a.year - b.year);
 
-// dataX = les couleurs
-// dataX qu'on trace dans le DOM
+// DataX est un tableau qui regroupe 3 objets
+// Chaque objet contient les champs color, position, name et history
+let dataX = [];
 dataX.push(Sony_Computer_Entertainment);
 dataX.push(Nintendo);
 dataX.push(Microsoft_Game_Studios);
-
-// Affiche des données après la dernière boucle datax
-console.log("Données rangées après la dernière boucle datax", dataX);
 
 chart
   .selectAll()
@@ -173,24 +159,21 @@ chart
   .attr("dx", ".5em")
   .attr("y", (d) => y(d.positionTile));
 
-// Création du petit rectangle pour les données
-tipBox = chart
+
+
+/*----------- Tooltip -----------*/
+
+const tooltip = d3.select("#tooltip");
+const tooltipLine = chart.append("line");
+
+// Création du petit rectangle (tip box) pour les données
+let tipBox = chart
   .append("rect")
   .attr("width", width)
   .attr("height", height)
   .attr("opacity", 0)
   .on("mousemove", drawTooltip)
   .on("mouseout", removeTooltip);
-
-/*----------- Tooltip -----------*/
-
-function removeTooltip() {
-  if (tooltip) tooltip.style("display", "none");
-  if (tooltipLine) tooltipLine.attr("stroke", "none");
-}
-
-const tooltip = d3.select("#tooltip");
-const tooltipLine = chart.append("line");
 
 // On affiche les données dans un petit rectangle
 //-----pointer au lieu de mouse
@@ -211,8 +194,6 @@ function drawTooltip() {
     .attr("y2", height);
 
   // insérer dynamiquement les contenus dans le tooltip
-  // dans la methode drawtooltip qui l'appelle quand on est sur la line, on recupere en premier la valeur sur l'axe x qui est l'année
-  // et ensuite, on peut aller dans le history chercher la valeur qui correspond à l'année, puis formater le reste d'attribut et attribuer au html du tooltip
   tooltip
     .html(year)
     .style("display", "block")
@@ -232,4 +213,10 @@ function drawTooltip() {
           ? ", Sortie jeu: " + d.history.find((h) => h.year == year).sortie
           : "")
     );
+}
+
+// Tooltip disparait quand on est plus entre les axes
+function removeTooltip() {
+  if (tooltip) tooltip.style("display", "none");
+  if (tooltipLine) tooltipLine.attr("stroke", "none");
 }
