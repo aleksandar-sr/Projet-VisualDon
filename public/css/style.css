@@ -30,7 +30,7 @@ p {
 .app h1 {
   font-weight: bolder;
   font-size: 50px;
-  margin-top: 10%;
+  margin-top: 10px;
 }
 
 .d-flex {
@@ -93,7 +93,6 @@ h3 {
   font-size: 40px;
   color: #e6e6e6;
   text-align: center;
-  
 }
 
 table {
@@ -115,6 +114,12 @@ td {
   margin-bottom: 15%;
 }
 
+#coverH {
+  background-color: #132329;
+  padding-left: 10%;
+  padding-right: 5%;
+}
+
 .bar {
   fill: #2dd295;
 }
@@ -133,7 +138,7 @@ td {
   font-size: 13px;
 }
 
-.yAxis  {
+.yAxis {
   margin-right: 20px;
 }
 
@@ -163,7 +168,7 @@ td {
   margin-right: 60%;
 }
 
-.histoContainer h3 {
+.bubbleContainer h3 {
   background-color: #304549;
   padding: 1.5%;
 }
@@ -237,5 +242,5 @@ td {
 }
 
 #platColor {
-  background-color: #BB9600;
+  background-color: #bb9600;
 }
