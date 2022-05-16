@@ -128,7 +128,7 @@ function draw(h = 1983) {
       // Enlever les cercles du DOM
       var elemEnter = elem.enter();
 
-     elemEnter
+      elemEnter
         .append("circle")
         .attr("cx", cx)
         .attr("cy", 200)
