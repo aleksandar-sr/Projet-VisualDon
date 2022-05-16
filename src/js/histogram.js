@@ -1,11 +1,13 @@
+// La version qu'on veut utiliser de d3 (ici la v3)
 const d3 = window.d3v3;
-const d = require("../../data/Video_Games_Sales_as_at_22_Dec_2016.csv");
+// d pour data
+import * as d from "../../data/Video_Games_Sales_as_at_22_Dec_2016.csv";
 
-let states, tipBox;
-let dataX = [];
 
-// Chargement et filtrage des données
+/*----------- Manipulation des données -----------*/
+
 // Recupère uniquement les jeux concernés sous forme de tab
+// Ici, nous axons la recherche des jeux uniquement sur les 3 grands constructeurs
 let data = d
   .filter((d) =>
     [
@@ -25,6 +27,9 @@ data = data.map((d) => {
 });
 data = data.sort((a, b) => a.value - b.value);
 
+
+
+/*----------- Dimension du graphe et des axes -----------*/
 const margin = {
   top: 15,
   right: 40,
@@ -32,19 +37,19 @@ const margin = {
   left: 200,
 };
 
-// Dimension du graphe
-let width = 900 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+const width = 900 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
 
 const svg = d3
   .select("#histogram")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
+  .attr("id", "coverH")
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var x = d3.scale
+const x = d3.scale
   .linear()
   .range([0, width])
   .domain([
@@ -64,13 +69,7 @@ const y = d3.scale
   );
 
 let yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
-
-svg
-  .append("g")
-  .attr("class", "yAxis")
-  .call(yAxis)
-  .style("fill", "white");
-
+svg.append("g").attr("class", "yAxis").call(yAxis).style("stroke", "white");
 
 /*----------- Création des barres -----------*/
 const bars = svg.selectAll(".bar").data(data).enter().append("g");
@@ -102,13 +101,20 @@ bars
   })
   .text(function (d) {
     return d.value;
+  });
+
+// Animation
+svg
+  .selectAll("bar")
+  .transition()
+  .duration(800)
+  .attr("y", function (d) {
+    return yAxis(d.Value);
   })
-
-
-   // Animation
-svg.selectAll("bars")
-.transition()
-.duration(800)
-.attr("y", function(d) { return yAxis(d.Value); })
-.attr("height", function(d) { return height - yAxis(d.Value); })
-.delay(function(d,i){console.log(i) ; return(i*100)})
+  .attr("height", function (d) {
+    return height - yAxis(d.Value);
+  })
+  .delay(function (d, i) {
+    console.log(i);
+    return i * 100;
+  });

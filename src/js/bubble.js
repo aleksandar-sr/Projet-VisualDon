@@ -1,7 +1,7 @@
-//La version qu'on veut utiliser de d3
+// La version qu'on veut utiliser de d3 (ici la v4)
 const d3 = window.d3v4;
-//Avec le require ça transforme en tab
-const d = require("../../data/Video_Games_Sales_as_at_22_Dec_2016.csv");
+// d pour data
+import * as d from "../../data/Video_Games_Sales_as_at_22_Dec_2016.csv";
 
 // Dimension svg
 const width = 1400;
@@ -13,10 +13,11 @@ const svgContainer = d3
   .attr("width", width)
   .attr("height", height);
 
+// h = année courante
 function draw(h = 1983) {
   let data = [];
-  // h = année courante
   let dataX = d.filter((d) => parseInt(d.Year_of_Release) == h);
+
   // Variables selon genre de jeux
   const Sports = dataX.filter((a) => a.Genre === "Sports");
   const Action = dataX.filter((a) => a.Genre === "Action");
@@ -48,7 +49,7 @@ function draw(h = 1983) {
   ).toFixed(2);
   const RolePercent = parseFloat((Role.length * 100) / dataX.length).toFixed(2);
 
-  // addedSize pour question esthetique
+  // addedSize pour une question d'esthetique
   // On définit un rayon de base avec minR -> pour que nos cercles aient un minimum de rayon
   const addedSize = 100;
   const minR = 65;
@@ -102,10 +103,10 @@ function draw(h = 1983) {
   };
   data.push(otherObject);
 
-  // Tri
+  // Tri des données
   data = data.sort((a, b) => a.r - b.r);
 
-  // Coord de base, placement sur l'axe Xs
+  // Coord de base, placement sur l'axe X
   const cxBase = 220;
   const cxOffset = 100;
 
@@ -122,14 +123,12 @@ function draw(h = 1983) {
     const props = data[i];
     if (parseInt(props.r) - minR > 0) {
       var cx = cxBase * i + cxOffset;
-
       var elem = svgContainer.selectAll("div").data(data);
 
       // Enlever les cercles du DOM
       var elemEnter = elem.enter();
 
-      // création cercle de base
-      let circles = elemEnter
+     elemEnter
         .append("circle")
         .attr("cx", cx)
         .attr("cy", 200)
@@ -160,10 +159,10 @@ function draw(h = 1983) {
 
 draw();
 
-d3.select("body").append("div").attr("class", "bubl");
+d3.select("body").append("div").attr("class", "bulles");
 
 const svg = d3
-  .select(".bubl")
+  .select(".bulles")
   .append("svg")
   .attr("width", "50%")
   .attr("height", 20);
@@ -215,7 +214,6 @@ let handle = slider
   .attr("class", "handle")
   .attr("r", 9);
 
-// h = année
 function changeYear(h) {
   d3.select("#countY").text(parseInt(h));
   draw(parseInt(h));
